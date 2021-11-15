@@ -1,2 +1,6 @@
 /node_modules
 .eslintcache
+/dist
+.eslintrc.js
+.prettierrc.json
+

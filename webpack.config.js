@@ -1,5 +1,6 @@
 const path = require("path");
 const HtmlWebpackPlugin = require("html-webpack-plugin");
+const ESLintPlugin = require("eslint-webpack-plugin");
 
 const { NODE_ENV } = process.env;
 
@@ -26,6 +27,10 @@ module.exports = {
           },
         },
       },
+      {
+        test: /\.css$/i,
+        use: ["style-loader", "css-loader"],
+      },
     ],
   },
   mode: NODE_ENV === "production" ? "production" : "development",
@@ -33,6 +38,7 @@ module.exports = {
     new HtmlWebpackPlugin({
       template: path.resolve(__dirname, "index.html"),
     }),
+    new ESLintPlugin(),
   ],
   devServer: {
     compress: true,
