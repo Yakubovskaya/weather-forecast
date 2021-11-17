@@ -15,6 +15,13 @@ module.exports = {
       "error",
       {
         ignoreComments: true,
+        ignoreUrls: true,
+      },
+    ],
+    "no-param-reassign": [
+      "error",
+      {
+        props: false,
       },
     ],
   },
