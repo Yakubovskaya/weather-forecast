@@ -43,4 +43,13 @@ export async function showUserCityWeather(el) {
       descr.textContent = weatherData.weather[0].description;
       icon.innerHTML = `<img src="https://openweathermap.org/img/wn/${weatherData.weather[0].icon}@2x.png">`;
     });
+  const weather = await fetch(
+    `https://api.openweathermap.org/data/2.5/weather?q=${locationData.location.data.city}&appid=${API_KEY_WEATHER}`,
+    {
+      method: "GET",
+    }
+  ).then((response) => response.json());
+  document.querySelector("#ip").innerHTML = IpData.ip;
+  document.querySelector("#ip2").innerHTML = IpData.city;
+  document.querySelector("#ip3").innerHTML = weather.name;
 }
