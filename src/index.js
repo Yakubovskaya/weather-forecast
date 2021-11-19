@@ -1,7 +1,7 @@
 import "./styles/style.css";
 import { showUserCityWeather } from "./showUserCityWeather";
 
-showUserCityWeather(document.querySelector(".weather-card"));
+showUserCityWeather();
 
 // getLocation();
 
