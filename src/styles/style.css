@@ -16,6 +16,10 @@ p {
   margin-bottom: 20px;
 }
 
+form {
+  text-align: center;
+}
+
 .container {
   max-width: 1140px;
   margin: 0 auto;
