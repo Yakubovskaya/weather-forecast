@@ -21,7 +21,11 @@ form {
 }
 
 .container {
-  max-width: 1140px;
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+  flex-wrap: wrap;
+  max-width: 900px;
   margin: 0 auto;
 }
 
@@ -35,7 +39,7 @@ form {
   text-align: center;
   margin-top: 30px;
   padding: 50px 0 30px;
-  width: 300px;
+  width: 260px;
   height: auto;
   border-radius: 3px;
   background-color: #a1d7e4;
