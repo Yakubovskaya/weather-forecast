@@ -20,6 +20,10 @@ form {
   text-align: center;
 }
 
+.list ul li {
+  cursor: pointer;
+}
+
 .container {
   display: flex;
   align-items: center;

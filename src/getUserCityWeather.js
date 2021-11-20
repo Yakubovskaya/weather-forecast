@@ -3,11 +3,11 @@ export async function getUserCityWeather() {
   const ipData = await fetch("https://ipapi.co/json/", {
     method: "GET",
   }).then((response) => response.json());
-  const data = await fetch(
+  const weatherData = await fetch(
     `https://api.openweathermap.org/data/2.5/weather?lat=${ipData.latitude}&lon=${ipData.longitude}&appid=${API_KEY_WEATHER}`,
     {
       method: "GET",
     }
   ).then((response) => response.json());
-  return data;
+  return weatherData;
 }

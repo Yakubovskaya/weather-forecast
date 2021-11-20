@@ -5,7 +5,7 @@ export function createFormAndList() {
   formWrapper.prepend(formEl);
   formEl.innerHTML = `
   <form>
-    <input placeholder="Введите город" required autofocus>
+    <input type="text" placeholder="Введите город" required autofocus>
     <button>Узнать погоду</button>
     </form>
     `;
