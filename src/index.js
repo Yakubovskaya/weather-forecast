@@ -1,4 +1,5 @@
 import "./styles/style.css";
-import { showWeather } from "./showWeather";
+import { createWeatherForecast } from "./createWeatherForecast";
 
-showWeather();
+const el = document.querySelector("#app");
+createWeatherForecast(el);
