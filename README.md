@@ -7,9 +7,9 @@ https://otus.ru/lessons/javascript-basic/?int_source=courses_catalog&int_term=pr
 [![Deploy to GithubPages](https://github.com/Yakubovskaya/otus-hw6-weather-forecast/actions/workflows/build.yml/badge.svg?branch=Hometask6)](https://github.com/Yakubovskaya/otus-hw6-weather-forecast/actions/workflows/build.yml)
 [![coverage](https://github.com/Yakubovskaya/otus-hw6-weather-forecast/actions/workflows/coverage.yml/badge.svg?branch=Hometask6)](https://github.com/Yakubovskaya/otus-hw6-weather-forecast/actions/workflows/coverage.yml)
 
-## Приложение "Прогноз погоды" 
+## Приложение "Прогноз погоды" :sun_with_face:
 
-[Сайт приложения](https://yakubovskaya.github.io/otus-hw6-weather-forecast/)
+:point_right: [Сайт приложения](https://yakubovskaya.github.io/otus-hw6-weather-forecast/)
 
 1. При открытии страницы пользователь видит погоду (город, температуру и иконку) в своей местности
 2. Он может ввести имя города в поле ввода и увидеть погоду в выбранном городе
