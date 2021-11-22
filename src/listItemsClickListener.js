@@ -1,6 +1,6 @@
 import { getAndShowCityInputWeather } from "./getAndShowWeather";
 
-export function listItemsClickStatus() {
+export function listItemsClickListener() {
   const listItems = document.querySelectorAll("li");
   listItems.forEach((item) => {
     item.addEventListener("click", async () => {
