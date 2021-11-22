@@ -1,5 +1,6 @@
-Otus. Курс "JavaScript. Basic"
-https://otus.ru/lessons/javascript-basic/?int_source=courses_catalog&int_term=programming
+Otus. Курс "JavaScript. Basic" https://otus.ru/lessons/javascript-basic/?int_source=courses_catalog&int_term=programming
+
+https://img.shields.io/scrutinizer/coverage/g/Yakubovskaya/otus-hw6-weather-forecast/Hometask6
 
 Приложение "Прогноз погоды"
 
