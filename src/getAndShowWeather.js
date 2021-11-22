@@ -11,11 +11,8 @@ async function getCityInputWeather(cityName) {
   return data;
 }
 
-export async function getUserCityWeather() {
+async function getUserCityWeather(ipData) {
   const API_KEY_WEATHER = "b071b1f9cb6a205c491857b865f1bf99";
-  const ipData = await fetch("https://ipapi.co/json/", {
-    method: "GET",
-  }).then((response) => response.json());
   const data = await fetch(
     `https://api.openweathermap.org/data/2.5/weather?lat=${ipData.latitude}&lon=${ipData.longitude}&appid=${API_KEY_WEATHER}`,
     {
@@ -25,9 +22,17 @@ export async function getUserCityWeather() {
   return data;
 }
 
+async function getIpData() {
+  const ipData = await fetch("https://ipapi.co/json/", {
+    method: "GET",
+  }).then((response) => response.json());
+  return ipData;
+}
+
 export async function getAndShowUserCityWeather() {
   const weatherCard = document.querySelector(".weather-wrapper");
-  const weatherData = await getUserCityWeather();
+  const ipData = await getIpData();
+  const weatherData = await getUserCityWeather(ipData);
   createWeatherAndMapCard(weatherCard, weatherData);
 }
 
