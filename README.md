@@ -1,5 +1,5 @@
-## Otus. Курс "JavaScript. Basic" 
-### https://otus.ru/lessons/javascript-basic/?int_source=courses_catalog&int_term=programming
+#### Otus. Курс "JavaScript. Basic".
+https://otus.ru/lessons/javascript-basic/?int_source=courses_catalog&int_term=programming
 
 ---
 
@@ -7,7 +7,7 @@
 [![Deploy to GithubPages](https://github.com/Yakubovskaya/otus-hw6-weather-forecast/actions/workflows/build.yml/badge.svg?branch=Hometask6)](https://github.com/Yakubovskaya/otus-hw6-weather-forecast/actions/workflows/build.yml)
 [![coverage](https://github.com/Yakubovskaya/otus-hw6-weather-forecast/actions/workflows/coverage.yml/badge.svg?branch=Hometask6)](https://github.com/Yakubovskaya/otus-hw6-weather-forecast/actions/workflows/coverage.yml)
 
-Приложение "Прогноз погоды" 
+## Приложение "Прогноз погоды" 
 
 https://yakubovskaya.github.io/otus-hw6-weather-forecast/
 
