@@ -7,7 +7,6 @@
     "test": "jest",
     "lint": "eslint .",
     "lint:fix": "eslint . --fix",
-    "coverage": "jest --silent --coverage --coverageReporters=\"text\" --coverageReporters=\"text-summary\"\n",
     "prepare": "husky install",
     "build": "webpack build --node-env production",
     "dev": "webpack serve --open"
