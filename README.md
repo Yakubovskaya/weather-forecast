@@ -9,7 +9,7 @@ https://otus.ru/lessons/javascript-basic/?int_source=courses_catalog&int_term=pr
 
 ## Приложение "Прогноз погоды" 
 
-https://yakubovskaya.github.io/otus-hw6-weather-forecast/
+[Сайт приложения](https://yakubovskaya.github.io/otus-hw6-weather-forecast/)
 
 1. При открытии страницы пользователь видит погоду (город, температуру и иконку) в своей местности
 2. Он может ввести имя города в поле ввода и увидеть погоду в выбранном городе
