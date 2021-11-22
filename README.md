@@ -1,3 +1,6 @@
+Otus. Курс "JavaScript. Basic"
+https://otus.ru/lessons/javascript-basic/?int_source=courses_catalog&int_term=programming
+
 Приложение "Прогноз погоды"
 
 1. При открытии страницы пользователь видит погоду (город, температуру и иконку) в своей местности
