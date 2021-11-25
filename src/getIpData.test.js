@@ -11,7 +11,7 @@ describe("getIpData", () => {
     global.fetch = unmockedFetch;
   });
 
-  it("get object with IP", async () => {
+  it("getIpData calls fetch and returns the user ip", async () => {
     const ipName = "Ip";
     const ip = "188.65.233.214";
     const ipObj = { [ipName]: ip };
