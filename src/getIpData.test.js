@@ -11,20 +11,20 @@ describe("getIpData", () => {
     global.fetch = unmockedFetch;
   });
 
-  it("getIpData calls fetch and returns the user ip", async () => {
-    const ipName = "Ip";
-    const ip = "188.65.233.214";
-    const ipObj = { [ipName]: ip };
+  it("getIpData calls fetch and returns the user location", async () => {
+    const lon = 30.2618;
+    const lat = 59.8983;
+    const ipObj = { lon, lat };
 
     global.fetch.mockImplementation(() =>
       Promise.resolve({ json: () => Promise.resolve(ipObj) })
     );
 
-    const data = await getIpData();
+    const res = await getIpData();
 
     expect(global.fetch).toHaveBeenCalledWith("https://ipapi.co/json/", {
       method: "GET",
     });
-    expect(data).toStrictEqual(ipObj);
+    expect(res).toStrictEqual(ipObj);
   });
 });
