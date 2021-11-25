@@ -1,4 +1,5 @@
 import { createWeatherAndMapCard } from "./createWeatherAndMapCard";
+import { getIpData } from "./getIpData";
 
 async function getCityInputWeather(cityName) {
   const API_KEY_WEATHER = "b071b1f9cb6a205c491857b865f1bf99";
@@ -20,13 +21,6 @@ async function getUserCityWeather(ipData) {
     }
   ).then((response) => response.json());
   return data;
-}
-
-async function getIpData() {
-  const ipData = await fetch("https://ipapi.co/json/", {
-    method: "GET",
-  }).then((response) => response.json());
-  return ipData;
 }
 
 export async function getAndShowUserCityWeather() {

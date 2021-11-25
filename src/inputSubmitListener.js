@@ -2,7 +2,7 @@ import { getAndShowCityInputWeather } from "./getAndShowWeather";
 import { getItems, saveItems, showItems } from "./localStorageData";
 import { listItemsClickListener } from "./listItemsClickListener";
 
-export async function inputSubmitListener() {
+export function inputSubmitListener() {
   const form = document.querySelector("form");
   const input = document.querySelector("input");
   const ul = document.querySelector("ul");
