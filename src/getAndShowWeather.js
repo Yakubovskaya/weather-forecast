@@ -14,5 +14,4 @@ export async function getAndShowCityInputWeather(cityName) {
   const weatherCard = document.querySelector(".weather-wrapper");
   const weatherData = await getCityInputWeather(cityName);
   createWeatherAndMapCard(weatherCard, weatherData);
-  return weatherData;
 }

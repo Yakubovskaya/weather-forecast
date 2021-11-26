@@ -2,7 +2,8 @@
 import { getAndShowUserCityWeather } from "./getAndShowWeather";
 import { inputSubmitListener } from "./inputSubmitListener";
 import { listItemsClickListener } from "./listItemsClickListener";
-import { getItems, showItems } from "./localStorageData";
+import { getlocalStrgData } from "./getandSavelocalStrgData";
+import { showLocalStrgData } from "./showLocalStrgData";
 
 export async function realizeWeatherForecast(el) {
   el.innerHTML = `
@@ -11,7 +12,7 @@ export async function realizeWeatherForecast(el) {
   </div>
   `;
   const container = document.querySelector(".container");
-  const itemsArray = await getItems();
+  const itemsArray = await getlocalStrgData();
   await getAndShowUserCityWeather();
   container.innerHTML += `
   <div class="form-wrapper">
@@ -25,7 +26,7 @@ export async function realizeWeatherForecast(el) {
   </div>
   `;
   const ul = document.querySelector("ul");
-  showItems(itemsArray, ul);
+  showLocalStrgData(itemsArray, ul);
   inputSubmitListener();
   listItemsClickListener();
 }

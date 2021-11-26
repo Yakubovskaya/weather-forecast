@@ -1,5 +1,6 @@
 import { getAndShowCityInputWeather } from "./getAndShowWeather";
-import { getItems, saveItems, showItems } from "./localStorageData";
+import { getlocalStrgData, savelocalStrgData } from "./getandSavelocalStrgData";
+import { showLocalStrgData } from "./showLocalStrgData";
 import { listItemsClickListener } from "./listItemsClickListener";
 
 export function inputSubmitListener() {
@@ -9,11 +10,11 @@ export function inputSubmitListener() {
   form.addEventListener("submit", async (ev) => {
     ev.preventDefault();
     const cityName = input.value;
-    const itemsArray = await getItems();
+    const itemsArray = await getlocalStrgData();
     await getAndShowCityInputWeather(cityName);
     itemsArray.push(cityName);
-    saveItems(itemsArray);
-    showItems(itemsArray, ul);
+    savelocalStrgData(itemsArray);
+    showLocalStrgData(itemsArray, ul);
     input.value = "";
     listItemsClickListener();
   });
