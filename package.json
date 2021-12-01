@@ -3,8 +3,8 @@
   "version": "1.0.0",
   "description": "",
   "main": "index.js",
-  "scripts": {
-    "test": "jest",
+  "scripts": { 
+    "test": "jest --silent --coverage --coverageReporters='text' --coverageReporters='text-summary'",
     "lint": "eslint .",
     "lint:fix": "eslint . --fix",
     "prepare": "husky install",
