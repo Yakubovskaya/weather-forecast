@@ -1,9 +1,11 @@
 // import { createFormAndList } from "./createFormAndList";
-import { getAndShowUserCityWeather } from "./getAndShowWeather";
+import { getlocalStrgData } from "./getandSavelocalStrgData";
+import { getIpData } from "./getIpData";
+import { getUserCityWeather } from "./getUserCityWeather";
+import { createWeatherAndMapCard } from "./createWeatherAndMapCard";
+import { showLocalStrgData } from "./showLocalStrgData";
 import { inputSubmitListener } from "./inputSubmitListener";
 import { listItemsClickListener } from "./listItemsClickListener";
-import { getlocalStrgData } from "./getandSavelocalStrgData";
-import { showLocalStrgData } from "./showLocalStrgData";
 
 export async function realizeWeatherForecast(el) {
   el.innerHTML = `
@@ -13,7 +15,8 @@ export async function realizeWeatherForecast(el) {
   `;
   const container = document.querySelector(".container");
   const itemsArray = await getlocalStrgData();
-  await getAndShowUserCityWeather();
+  const ipData = await getIpData();
+  const weatherData = await getUserCityWeather(ipData);
   container.innerHTML += `
   <div class="form-wrapper">
     <div class="form">
@@ -25,7 +28,9 @@ export async function realizeWeatherForecast(el) {
     <div class="list"><ul></ul></div>
   </div>
   `;
+  const weatherCard = document.querySelector(".weather-wrapper");
   const ul = document.querySelector("ul");
+  createWeatherAndMapCard(weatherCard, weatherData);
   showLocalStrgData(itemsArray, ul);
   inputSubmitListener();
   listItemsClickListener();
