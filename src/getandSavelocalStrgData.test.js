@@ -46,7 +46,7 @@ describe("localStorageData", () => {
       expItemsArray
     );
   });
-  it("shouldn't save 11th item in localStorage", async () => {
+  it("should save only 10 items to localStorage", async () => {
     const itemsArray = [
       "Выборг",
       "Москва",
