@@ -122,10 +122,13 @@ describe("realizeWeatherForecast", () => {
       name: city,
     };
 
-    global.fetch.mockResolvedValueOnce({ json: () => Promise.resolve(data) });
+    global.fetch = jest.fn();
+    global.fetch
+      .mockResolvedValueOnce({ json: () => Promise.resolve(ipData) })
+      .mockResolvedValueOnce({ json: () => Promise.resolve(data) })
+      .mockResolvedValueOnce({ json: () => Promise.resolve(data) });
 
     await realizeWeatherForecast(el);
-
     const form = el.querySelector("form");
     const input = el.querySelector("input");
     input.value = city;
@@ -151,6 +154,69 @@ describe("realizeWeatherForecast", () => {
       }
     );
 
+    expect(cityEl.innerHTML).toStrictEqual(expCityEl);
+    expect(tempEl.innerHTML).toStrictEqual(expTempEl);
+    expect(descrEl.innerHTML).toStrictEqual(expDescrEl);
+    expect(iconEl.innerHTML).toStrictEqual(expIconEl);
+    expect(mapEl.innerHTML).toStrictEqual(expMapEl);
+  });
+  it("click on city from list and shows weather in this city", async () => {
+    const itemsArray = '["Выборг"]';
+    mockFridge[storageKey] = itemsArray;
+
+    const city = "Выборг";
+    const description = "scattered clouds";
+    const icon = "03d";
+    const temp = 260;
+    const weatherData = {
+      weather: [
+        {
+          description,
+          icon,
+        },
+      ],
+      main: {
+        temp,
+      },
+      name: city,
+    };
+
+    global.fetch = jest.fn();
+    global.fetch
+      .mockResolvedValueOnce({
+        json: () => Promise.resolve(ipData),
+      })
+      .mockResolvedValueOnce({
+        json: () => Promise.resolve(weatherData),
+      })
+      .mockResolvedValueOnce({
+        json: () => Promise.resolve(weatherData),
+      });
+
+    await realizeWeatherForecast(el);
+
+    const listItem = document.querySelector("li");
+
+    listItem.click();
+
+    const cityEl = el.querySelector(".city");
+    const tempEl = el.querySelector(".temp");
+    const descrEl = el.querySelector(".descr");
+    const iconEl = el.querySelector(".icon");
+    const mapEl = el.querySelector(".map");
+
+    const expCityEl = `${weatherData.name}`;
+    const expTempEl = `${Math.round(weatherData.main.temp - 273)}°`;
+    const expDescrEl = `${weatherData.weather[0].description}`;
+    const expIconEl = `<img src="https://openweathermap.org/img/wn/${weatherData.weather[0].icon}@2x.png">`;
+    const expMapEl = `<img src="https://maps.googleapis.com/maps/api/staticmap?center=${weatherData.name}&amp;zoom=9&amp;size=300x300&amp;&amp;markers=size:mid%7Ccolor:0xFFFF00%7C${weatherData.name}&amp;key=${API_MAP}">`;
+
+    expect(global.fetch).toHaveBeenCalledWith(
+      `https://api.openweathermap.org/data/2.5/weather?q=${city}&appid=${API_KEY_WEATHER}`,
+      {
+        method: "GET",
+      }
+    );
     expect(cityEl.innerHTML).toStrictEqual(expCityEl);
     expect(tempEl.innerHTML).toStrictEqual(expTempEl);
     expect(descrEl.innerHTML).toStrictEqual(expDescrEl);
