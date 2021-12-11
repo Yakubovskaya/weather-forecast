@@ -17,14 +17,29 @@ describe("getIpData", () => {
     const ipObj = { lon, lat };
 
     global.fetch.mockImplementation(() =>
-      Promise.resolve({ json: () => Promise.resolve(ipObj) })
+      Promise.resolve({
+        ok: true,
+        json: () => Promise.resolve(ipObj),
+      })
     );
 
     const res = await getIpData();
 
-    expect(global.fetch).toHaveBeenCalledWith("https://ipapi.co/json/", {
-      method: "GET",
-    });
+    expect(global.fetch).toHaveBeenCalledWith("https://ipapi.co/json/");
     expect(res).toStrictEqual(ipObj);
+  });
+  it("the fetch fails with an error", async () => {
+    global.fetch.mockImplementation(() =>
+      Promise.resolve({
+        ok: false,
+        json: () => Promise.resolve(),
+      })
+    );
+
+    try {
+      await getIpData();
+    } catch (e) {
+      expect(e).toMatch("Error");
+    }
   });
 });

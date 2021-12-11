@@ -1,4 +1,5 @@
 import { realizeWeatherForecast } from "./realizeWeatherForecast";
+import { sleep } from "../sleep";
 
 describe("realizeWeatherForecast", () => {
   let el;
@@ -36,9 +37,15 @@ describe("realizeWeatherForecast", () => {
     document.body.append(el);
 
     global.fetch
-      .mockResolvedValueOnce({ json: () => Promise.resolve(ipData) })
-      // eslint-disable-next-line max-len
-      .mockResolvedValueOnce({ json: () => Promise.resolve(weather) });
+      .mockResolvedValueOnce({
+        ok: true,
+        json: () => Promise.resolve(ipData),
+      })
+
+      .mockResolvedValueOnce({
+        ok: true,
+        json: () => Promise.resolve(weather),
+      });
   });
 
   afterEach(() => {
@@ -67,15 +74,10 @@ describe("realizeWeatherForecast", () => {
     };
 
     await realizeWeatherForecast(el);
-    expect(global.fetch).toHaveBeenNthCalledWith(1, "https://ipapi.co/json/", {
-      method: "GET",
-    });
+    expect(global.fetch).toHaveBeenNthCalledWith(1, "https://ipapi.co/json/");
     expect(global.fetch).toHaveBeenNthCalledWith(
       2,
-      `https://api.openweathermap.org/data/2.5/weather?lat=${ipData.latitude}&lon=${ipData.longitude}&appid=${API_KEY_WEATHER}`,
-      {
-        method: "GET",
-      }
+      `https://api.openweathermap.org/data/2.5/weather?lat=${ipData.latitude}&lon=${ipData.longitude}&appid=${API_KEY_WEATHER}`
     );
     const cityEl = el.querySelector(".city");
     const tempEl = el.querySelector(".temp");
@@ -122,18 +124,19 @@ describe("realizeWeatherForecast", () => {
       name: city,
     };
 
-    global.fetch = jest.fn();
-    global.fetch
-      .mockResolvedValueOnce({ json: () => Promise.resolve(ipData) })
-      .mockResolvedValueOnce({ json: () => Promise.resolve(data) })
-      .mockResolvedValueOnce({ json: () => Promise.resolve(data) });
+    global.fetch.mockResolvedValueOnce({
+      ok: true,
+      json: () => Promise.resolve(data),
+    });
 
     await realizeWeatherForecast(el);
     const form = el.querySelector("form");
     const input = el.querySelector("input");
     input.value = city;
 
-    await form.dispatchEvent(new Event("submit"));
+    form.dispatchEvent(new Event("submit"));
+
+    await sleep(50);
 
     const cityEl = el.querySelector(".city");
     const tempEl = el.querySelector(".temp");
@@ -148,10 +151,7 @@ describe("realizeWeatherForecast", () => {
     const expMapEl = `<img src="https://maps.googleapis.com/maps/api/staticmap?center=${data.name}&amp;zoom=9&amp;size=300x300&amp;&amp;markers=size:mid%7Ccolor:0xFFFF00%7C${data.name}&amp;key=${API_MAP}">`;
 
     expect(global.fetch).toHaveBeenCalledWith(
-      `https://api.openweathermap.org/data/2.5/weather?q=${city}&appid=${API_KEY_WEATHER}`,
-      {
-        method: "GET",
-      }
+      `https://api.openweathermap.org/data/2.5/weather?q=${city}&appid=${API_KEY_WEATHER}`
     );
 
     expect(cityEl.innerHTML).toStrictEqual(expCityEl);
@@ -181,23 +181,18 @@ describe("realizeWeatherForecast", () => {
       name: city,
     };
 
-    global.fetch = jest.fn();
-    global.fetch
-      .mockResolvedValueOnce({
-        json: () => Promise.resolve(ipData),
-      })
-      .mockResolvedValueOnce({
-        json: () => Promise.resolve(weatherData),
-      })
-      .mockResolvedValueOnce({
-        json: () => Promise.resolve(weatherData),
-      });
+    global.fetch.mockResolvedValueOnce({
+      ok: true,
+      json: () => Promise.resolve(weatherData),
+    });
 
     await realizeWeatherForecast(el);
 
     const listItem = document.querySelector("li");
 
     listItem.click();
+
+    await sleep(50);
 
     const cityEl = el.querySelector(".city");
     const tempEl = el.querySelector(".temp");
@@ -212,10 +207,7 @@ describe("realizeWeatherForecast", () => {
     const expMapEl = `<img src="https://maps.googleapis.com/maps/api/staticmap?center=${weatherData.name}&amp;zoom=9&amp;size=300x300&amp;&amp;markers=size:mid%7Ccolor:0xFFFF00%7C${weatherData.name}&amp;key=${API_MAP}">`;
 
     expect(global.fetch).toHaveBeenCalledWith(
-      `https://api.openweathermap.org/data/2.5/weather?q=${city}&appid=${API_KEY_WEATHER}`,
-      {
-        method: "GET",
-      }
+      `https://api.openweathermap.org/data/2.5/weather?q=${city}&appid=${API_KEY_WEATHER}`
     );
     expect(cityEl.innerHTML).toStrictEqual(expCityEl);
     expect(tempEl.innerHTML).toStrictEqual(expTempEl);

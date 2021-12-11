@@ -2,6 +2,7 @@ import { getCityInputWeather } from "./getCityInputWeather";
 
 describe("getCityInputWeather", () => {
   const unmockedFetch = global.fetch;
+  const cityName = "Moscow";
 
   beforeAll(() => {
     global.fetch = jest.fn();
@@ -12,7 +13,6 @@ describe("getCityInputWeather", () => {
   });
 
   it("function calls fetch and returns the weather data", async () => {
-    const cityName = "Moscow";
     const description = "clear sky";
     const icon = "01d";
     const temp = 282.55;
@@ -31,17 +31,31 @@ describe("getCityInputWeather", () => {
     };
 
     global.fetch.mockImplementation(() =>
-      Promise.resolve({ json: () => Promise.resolve(data) })
+      Promise.resolve({
+        ok: true,
+        json: () => Promise.resolve(data),
+      })
     );
 
     const res = await getCityInputWeather(cityName);
 
     expect(global.fetch).toHaveBeenCalledWith(
-      `https://api.openweathermap.org/data/2.5/weather?q=${cityName}&appid=${API_KEY_WEATHER}`,
-      {
-        method: "GET",
-      }
+      `https://api.openweathermap.org/data/2.5/weather?q=${cityName}&appid=${API_KEY_WEATHER}`
     );
     expect(res).toStrictEqual(data);
+  });
+  it("the fetch fails with an error", async () => {
+    global.fetch.mockImplementation(() =>
+      Promise.resolve({
+        ok: false,
+        json: () => Promise.resolve(),
+      })
+    );
+
+    try {
+      await getCityInputWeather(cityName);
+    } catch (e) {
+      expect(e).toMatch("Invalid City");
+    }
   });
 });
