@@ -38,12 +38,6 @@ describe("getUserCityWeather", () => {
         json: () => Promise.resolve(data),
       })
     );
-    // global.fetch.mockImplementation(() =>
-    //   Promise.resolve({
-    //     ok: false,
-    //     error: () => console.log('Invalid Input')
-    //   })
-    // );
 
     const res = await getUserCityWeather(ipData);
 
