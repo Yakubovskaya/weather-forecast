@@ -1,6 +1,6 @@
 ## Приложение "Прогноз погоды" :sun_with_face:
 
-:point_right: [Ссылка на приложение](https://yakubovskaya.github.io/otus-hw6-weather-forecast/)
+:point_right: [Ссылка на приложение](https://yakubovskaya.github.io/weather-forecast/)
 
 1. При открытии страницы пользователь видит погоду (город, температуру и иконку) в своей местности
 2. Он может ввести имя города в поле ввода и увидеть погоду в выбранном городе
