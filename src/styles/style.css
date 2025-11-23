@@ -16,15 +16,7 @@ p {
   margin-bottom: 20px;
 }
 
-form {
-  text-align: center;
-}
-
-.list ul li {
-  cursor: pointer;
-}
-
-.container {
+.weather-app {
   display: flex;
   align-items: center;
   justify-content: space-around;
@@ -33,11 +25,11 @@ form {
   margin: 0 auto;
 }
 
-.weather-wrapper {
+.weather-card {
   padding: 10px 0;
 }
 
-.weather-box {
+.weather-card__content {
   position: relative;
   margin: 0 auto;
   text-align: center;
@@ -50,28 +42,21 @@ form {
   box-shadow: 0px 1px 7px rgba(0, 0, 0, 0.25);
 }
 
-.city {
+.weather-card__city {
   font-size: 25px;
   font-weight: bold;
 }
 
-.temp {
+.weather-card__temp {
   font-size: 60px;
   font-weight: bold;
   transform: translateX(10px);
 }
 
-.descr {
-  font-style: italic;
+.search-form__form {
+  text-align: center;
 }
 
-.map {
-  position: absolute;
-  left: 65%;
-  top: 47%;
-}
-
-.map img {
-  border-radius: 50%;
-  box-shadow: 0px 1px 7px rgba(0, 0, 0, 0.25);
+.city-list__item {
+  cursor: pointer;
 }

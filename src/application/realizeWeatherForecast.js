@@ -9,27 +9,24 @@ import { listItemsClickListener } from "./listItemsClickListener";
 
 export async function realizeWeatherForecast(el) {
   el.innerHTML = `
-  <div class="container">
-    <div class="weather-wrapper"></div>
-  </div>
+    <div class="weather-app">
+      <div class="weather-card"></div>
+      <div class="search-form">
+        <form class="search-form__form">
+          <input class="search-form__input" type="text" placeholder="Введите город" required autofocus>
+          <button class="search-form__button" type="submit">Узнать погоду</button>
+        </form>
+        <div class="city-list">
+          <ul class="city-list__list"></ul>
+        </div>
+      </div>
+    </div>
   `;
-  const container = document.querySelector(".container");
   const itemsArray = await getlocalStrgData();
   const ipData = await getIpData();
   const weatherData = await getUserCityWeather(ipData);
-  container.innerHTML += `
-  <div class="form-wrapper">
-    <div class="form">
-      <form>
-        <input type="text" placeholder="Введите город" required autofocus>
-        <button>Узнать погоду</button>
-      </form>
-    </div>
-    <div class="list"><ul></ul></div>
-  </div>
-  `;
-  const weatherCard = document.querySelector(".weather-wrapper");
-  const ul = document.querySelector("ul");
+  const weatherCard = document.querySelector(".weather-card");
+  const ul = document.querySelector(".city-list__list");
   createWeatherAndMapCard(weatherCard, weatherData);
   showLocalStrgData(itemsArray, ul);
   inputSubmitListener();

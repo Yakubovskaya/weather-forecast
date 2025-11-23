@@ -5,10 +5,10 @@ import { showLocalStrgData } from "./showLocalStrgData";
 import { listItemsClickListener } from "./listItemsClickListener";
 
 export function inputSubmitListener() {
-  const form = document.querySelector("form");
-  const input = document.querySelector("input");
-  const ul = document.querySelector("ul");
-  const weatherCard = document.querySelector(".weather-wrapper");
+  const form = document.querySelector(".search-form__form");
+  const input = document.querySelector(".search-form__input");
+  const ul = document.querySelector(".city-list__list");
+  const weatherCard = document.querySelector(".weather-card");
   form.addEventListener("submit", async (ev) => {
     ev.preventDefault();
     const cityName = input.value;
