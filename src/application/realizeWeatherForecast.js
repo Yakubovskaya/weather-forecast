@@ -22,6 +22,10 @@ export async function realizeWeatherForecast(el) {
       </div>
     </div>
   `;
+  const searchForm = document.querySelector(".search-form");
+  if (searchForm) {
+    searchForm.classList.add("search-form--hidden");
+  }
   const itemsArray = await getlocalStrgData();
   const ipData = await getIpData();
   const weatherData = await getUserCityWeather(ipData);
@@ -29,6 +33,9 @@ export async function realizeWeatherForecast(el) {
   const ul = document.querySelector(".city-list__list");
   createWeatherAndMapCard(weatherCard, weatherData);
   showLocalStrgData(itemsArray, ul);
+  if (weatherData && searchForm) {
+    searchForm.classList.remove("search-form--hidden");
+  }
   inputSubmitListener();
   listItemsClickListener();
 }

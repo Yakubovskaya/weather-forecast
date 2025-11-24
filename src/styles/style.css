@@ -60,3 +60,7 @@ p {
 .city-list__item {
   cursor: pointer;
 }
+
+.search-form--hidden {
+  display: none;
+}
